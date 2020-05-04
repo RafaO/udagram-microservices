@@ -12,7 +12,7 @@ spec:
         service: reverseproxy
     spec:
       containers:
-      - image: scheele/reverseproxy
+      - image: rafao/simple-reverse-proxy
         name: reverseproxy
         imagePullPolicy: Always          
         resources:
