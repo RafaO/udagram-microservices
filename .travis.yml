@@ -15,19 +15,9 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  # user
-  - docker build -t udagram-backend-user udacity-c3-restapi-user
-  - docker tag udagram-backend-user rafao/udagram-backend-user
-  # feed
-  - docker build -t udagram-backend-feed udacity-c3-restapi-feed
-  - docker tag udagram-backend-feed rafao/udagram-backend-feed
-  # frontend
-  - docker build -t udagram-frontend udacity-c3-frontend
-  - docker tag udagram-frontend rafao/udagram-frontend
+  - docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml build --parallel
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push rafao/udagram-backend-user
-  - docker push rafao/udagram-backend-feed
-  - docker push rafao/udagram-frontend
+  - docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml push
   
