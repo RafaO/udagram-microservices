@@ -51,3 +51,30 @@ Ionic CLI can build the frontend into static HTML/CSS/JavaScript files. These fi
 ionic build
 ```
 ***
+
+## Submission information
+
+### Docker hub images:
+* https://hub.docker.com/repository/docker/rafao/udagram-frontend
+* https://hub.docker.com/repository/docker/rafao/udagram-backend-user
+* https://hub.docker.com/repository/docker/rafao/simple-reverse-proxy
+* https://hub.docker.com/repository/docker/rafao/udagram-backend-feed
+
+### Running the project:
+In order to run the project locally, you would need to update your secrets in your environment variables and the configuration files. Then, deploy to kubernetes with the following comand:
+```bash
+$> kubectl apply -f udacity-c3-deployment/k8s/
+```
+After that, verify that your pods are running with
+```bash
+$> kubectl get pods
+```
+Forward the ports to be able to find reverse proxy and frontend services:
+```bash
+$> kubectl port-forward service/frontend 8100:8100
+$> kubectl port-forward service/reverseproxy 8080:8080
+```
+Open your favorite browser and go to `localhost:8100`
+
+### Screenshots
+You can find screenshots of the running pods, app, and travis under the [screenshots](https://github.com/RafaO/udagram-microservices/blob/master/screenshots) directory.
