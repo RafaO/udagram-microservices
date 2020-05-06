@@ -6,6 +6,11 @@ metadata:
   name: reverseproxy
 spec:
   replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+       maxUnavailable: 25%
+       maxSurge: 1
   template:
     metadata:
       labels:
@@ -24,6 +29,13 @@ spec:
             cpu: "500m"       
         ports:
         - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          successThreshold: 1   
       restartPolicy: Always
 
 
