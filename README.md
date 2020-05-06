@@ -76,5 +76,8 @@ $> kubectl port-forward service/reverseproxy 8080:8080
 ```
 Open your favorite browser and go to `localhost:8100`
 
+### CD
+Once you have your cluster configured, you need to uncomment the last line in `travis.yml` file to deploy the app in every CI iteration.
+
 ### Screenshots
 You can find screenshots of the running pods, app, and travis under the [screenshots](https://github.com/RafaO/udagram-microservices/blob/master/screenshots) directory.
